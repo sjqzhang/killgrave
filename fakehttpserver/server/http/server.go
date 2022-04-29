@@ -16,7 +16,7 @@ import (
 	"github.com/gorilla/mux"
 	"gopkg.in/yaml.v2"
 
-	killgrave "github.com/friendsofgo/killgrave/fakehttpserver"
+	killgrave "github.com/sjqzhang/killgrave/fakehttpserver"
 )
 
 //go:embed cert/server.key

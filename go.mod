@@ -1,4 +1,4 @@
-module github.com/friendsofgo/killgrave
+module github.com/sjqzhang/killgrave
 
 go 1.16
 

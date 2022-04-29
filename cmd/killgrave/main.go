@@ -13,8 +13,8 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/radovskyb/watcher"
 
-	killgrave "github.com/friendsofgo/killgrave/internal"
-	server "github.com/friendsofgo/killgrave/internal/server/http"
+	killgrave "github.com/sjqzhang/killgrave/fakehttpserver"
+	server "github.com/sjqzhang/killgrave/fakehttpserver/server/http"
 )
 
 var (
