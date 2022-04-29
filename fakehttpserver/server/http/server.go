@@ -6,15 +6,14 @@ import (
 	_ "embed"
 	"encoding/json"
 	"fmt"
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
+	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
-
-	"github.com/gorilla/handlers"
-	"github.com/gorilla/mux"
-	"gopkg.in/yaml.v2"
 
 	killgrave "github.com/sjqzhang/killgrave/fakehttpserver"
 )
@@ -165,9 +164,27 @@ func (s *Server) Shutdown() error {
 func (s *Server) addImposterHandler(imposters []Imposter, imposterConfig ImposterConfig) {
 	for _, imposter := range imposters {
 		imposter.BasePath = filepath.Dir(imposterConfig.FilePath)
-		r := s.router.HandleFunc(imposter.Request.Endpoint, ImposterHandler(imposter)).
+		var r *mux.Route
+		//if imposter.Request.Host != "" {
+		//	host := strings.ReplaceAll(strings.ReplaceAll(imposter.Request.Host, "https://", ""), "http://", "")
+		//	if len(strings.Split(host, ":")) > 1 {
+		//		host = strings.Split(host, ":")[0]
+		//	}
+		//	r = s.router.HandleFunc(strings.Join(strings.Split(host, "."), "/")+imposter.Request.Endpoint, ImposterHandler(imposter)).
+		//		Methods(imposter.Request.Method).
+		//		MatcherFunc(MatcherBySchema(imposter))
+		//} else {
+		//
+		//}
+
+		r = s.router.HandleFunc(imposter.Request.Endpoint, ImposterHandler(imposter)).
 			Methods(imposter.Request.Method).
 			MatcherFunc(MatcherBySchema(imposter))
+
+		if imposter.Request.Host != "" {
+			r.Host(imposter.Request.Host)
+		}
+
 
 		if imposter.Request.Headers != nil {
 			for k, v := range *imposter.Request.Headers {

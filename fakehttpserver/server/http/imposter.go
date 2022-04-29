@@ -50,6 +50,7 @@ func (i *Imposter) CalculateFilePath(filePath string) string {
 
 // Request represent the structure of real request
 type Request struct {
+	Host       string             `json:"host"`
 	Method     string             `json:"method"`
 	Endpoint   string             `json:"endpoint"`
 	SchemaFile *string            `json:"schemaFile"`
