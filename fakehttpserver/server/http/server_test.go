@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	killgrave "github.com/friendsofgo/killgrave/fakehttpserver"
+	killgrave "github.com/sjqzhang/killgrave/fakehttpserver"
 	"github.com/gorilla/mux"
 	"github.com/stretchr/testify/assert"
 )

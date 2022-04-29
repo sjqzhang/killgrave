@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	killgrave "github.com/friendsofgo/killgrave/fakehttpserver"
+	killgrave "github.com/sjqzhang/killgrave/fakehttpserver"
 )
 
 func TestNewProxy(t *testing.T) {
